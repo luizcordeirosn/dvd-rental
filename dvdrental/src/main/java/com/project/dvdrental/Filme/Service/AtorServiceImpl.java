@@ -2,7 +2,6 @@ package com.project.dvdrental.Filme.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.project.dvdrental.Filme.Model.Ator;
 import com.project.dvdrental.Filme.Repository.AtorRepository;
 
