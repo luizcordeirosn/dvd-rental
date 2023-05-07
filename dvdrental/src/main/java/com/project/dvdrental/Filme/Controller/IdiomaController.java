@@ -32,5 +32,18 @@ public class IdiomaController {
 
         return ResponseEntity.ok(idioma);
     }
+
+    @GetMapping(value = "/filme/{filmeid}")
+    public ResponseEntity<Idioma> idiomaFilme(@PathVariable Integer filmeid) {
+
+        Idioma idioma = new Idioma();
+        try {
+            idioma = idiomaService.obterPorFilmeIdioma(filmeid);
+        } catch (Exception e) {
+            System.out.println("Erro - " + e.getMessage());
+        }
+
+        return ResponseEntity.ok(idioma);
+    }
 }
 

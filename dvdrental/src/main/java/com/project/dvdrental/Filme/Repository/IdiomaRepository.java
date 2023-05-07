@@ -5,5 +5,7 @@ import com.project.dvdrental.Filme.Model.Idioma;
 public interface IdiomaRepository {
     
     Idioma obterPorIdIdioma(Integer id);
+
+    Idioma obterPorFilmeIdioma(Integer filme);
     
 }

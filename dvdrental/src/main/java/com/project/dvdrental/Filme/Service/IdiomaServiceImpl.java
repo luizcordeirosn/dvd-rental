@@ -16,5 +16,11 @@ public class IdiomaServiceImpl implements IdiomaService {
         
         return idiomaRepo.obterPorIdIdioma(id);
     }
+
+    @Override
+    public Idioma obterPorFilmeIdioma(Integer filme) {
+        
+        return idiomaRepo.obterPorFilmeIdioma(filme);
+    }
     
 }
