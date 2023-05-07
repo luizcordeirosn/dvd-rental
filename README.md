@@ -1,1 +1,1 @@
-# dvd-rental
+# DVD Rental
