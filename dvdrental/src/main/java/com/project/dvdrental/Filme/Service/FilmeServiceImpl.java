@@ -1,5 +1,7 @@
 package com.project.dvdrental.Filme.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.dvdrental.Filme.Model.Filme;
@@ -15,6 +17,12 @@ public class FilmeServiceImpl implements FilmeService {
     public Filme obterPorIdFilme(Integer id) {
         
         return filmeRepo.obterPorIdFilme(id);
+    }
+
+    @Override
+    public List<Filme> obterTodosFilmesPorCategoria(Integer id) {
+        
+        return filmeRepo.obterTodosFilmesPorCategoria(id);
     }
 
     @Override
