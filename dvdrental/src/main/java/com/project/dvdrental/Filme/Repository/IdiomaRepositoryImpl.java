@@ -13,8 +13,7 @@ import com.project.dvdrental.Filme.Model.Idioma;
 @Repository
 public class IdiomaRepositoryImpl implements IdiomaRepository{
 
-    private static String SELECT_ONE = " select * from language where language_id = ?"
-            + " order by language_id";
+    private static String SELECT_ONE = " select * from language where language_id = ?";
     
     @Autowired
     private JdbcTemplate jdbcTemplate;
