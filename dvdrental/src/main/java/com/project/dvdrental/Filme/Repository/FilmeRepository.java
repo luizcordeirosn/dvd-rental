@@ -9,4 +9,6 @@ public interface FilmeRepository {
     Filme salvarFilme(Filme filme);
 
     Filme atualizarNomeFilme(Filme filme, String nome);
+
+    Filme atualizarCategoriaFilme(Filme filme, Integer categoria);
 }

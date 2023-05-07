@@ -24,6 +24,7 @@ public class FilmeRepositoryImpl implements FilmeRepository {
             + " language_id, rental_duration, rental_rate, length, replacement_cost, special_features) "
             + " values (nextval('film_film_id_seq'),?,?,?,?,?,?,?,?,?::text[]) ";
     private static String UPDATE_NAME = "update film set title = ? where film_id = ?";
+    private static String UPDATE_CATEGORY = "update film_category set category_id = ? where film_id = ?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -98,6 +99,14 @@ public class FilmeRepositoryImpl implements FilmeRepository {
     public Filme atualizarNomeFilme(Filme filme, String nome) {
        
         jdbcTemplate.update(UPDATE_NAME, new Object[] {nome, filme.getFilmeId()});
+
+        return obterPorIdFilme(filme.getFilmeId());
+
+    }
+
+    public Filme atualizarCategoriaFilme(Filme filme, Integer categoria) {
+       
+        jdbcTemplate.update(UPDATE_CATEGORY, new Object[] {categoria, filme.getFilmeId()});
 
         return obterPorIdFilme(filme.getFilmeId());
 

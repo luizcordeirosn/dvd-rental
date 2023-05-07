@@ -31,4 +31,12 @@ public class FilmeServiceImpl implements FilmeService {
         return filmeRepo.atualizarNomeFilme(filme, nome);
     }
 
+    @Override
+    public Filme atualizarCategoriaFilme(Integer filmeId, Integer categoria) {
+
+        Filme filme = filmeRepo.obterPorIdFilme(filmeId);
+        
+        return filmeRepo.atualizarCategoriaFilme(filme, categoria);
+    }
+
 }

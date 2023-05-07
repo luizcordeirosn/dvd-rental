@@ -84,4 +84,20 @@ public class FilmeController {
         return ResponseEntity.ok(filme);
     }
 
+    @PostMapping(value = "/atualizar/{filmeid}/categoria/{categoriaid}")
+    public ResponseEntity<Filme> atualizarCategoriaFilme(@PathVariable Integer filmeid,
+            @PathVariable Integer categoriaid)
+            throws SQLException {
+
+        Filme filme = new Filme();
+
+        try {
+            filme = filmeService.atualizarCategoriaFilme(filmeid, categoriaid);
+        } catch (Exception e) {
+            System.out.println("Erro - " + e.getMessage());
+        }
+
+        return ResponseEntity.ok(filme);
+    }
+
 }

@@ -9,5 +9,7 @@ public interface FilmeService {
     Filme salvarFilme(Filme filme);
 
     Filme atualizarNomeFilme(Integer filmeId, String nome);
+
+    Filme atualizarCategoriaFilme(Integer filmeId, Integer categoria);
     
 }
