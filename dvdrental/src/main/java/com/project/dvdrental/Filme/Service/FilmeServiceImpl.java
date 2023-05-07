@@ -23,4 +23,12 @@ public class FilmeServiceImpl implements FilmeService {
         return filmeRepo.salvarFilme(filme);
     }
 
+    @Override
+    public Filme atualizarNomeFilme(Integer filmeId, String nome) {
+
+        Filme filme = filmeRepo.obterPorIdFilme(filmeId);
+        
+        return filmeRepo.atualizarNomeFilme(filme, nome);
+    }
+
 }

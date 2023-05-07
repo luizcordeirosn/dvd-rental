@@ -23,6 +23,7 @@ public class FilmeRepositoryImpl implements FilmeRepository {
     private static String INSERT = " insert into film (film_id, title, description, release_year,"
             + " language_id, rental_duration, rental_rate, length, replacement_cost, special_features) "
             + " values (nextval('film_film_id_seq'),?,?,?,?,?,?,?,?,?::text[]) ";
+    private static String UPDATE_NAME = "update film set title = ? where film_id = ?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -91,6 +92,14 @@ public class FilmeRepositoryImpl implements FilmeRepository {
         filme.setFilmeId(id);
 
         return filme;
+
+    }
+
+    public Filme atualizarNomeFilme(Filme filme, String nome) {
+       
+        jdbcTemplate.update(UPDATE_NAME, new Object[] {nome, filme.getFilmeId()});
+
+        return obterPorIdFilme(filme.getFilmeId());
 
     }
 }

@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.project.dvdrental.Filme.Model.Filme;
 import com.project.dvdrental.Filme.Model.FilmeInput;
@@ -47,7 +49,7 @@ public class FilmeController {
         filme.setTitulo(filmeInput.getTitulo());
         filme.setDescricao(filmeInput.getDescricao());
         filme.setAnoLancamento(filmeInput.getAnoLancamento());
-        
+
         Idioma idioma = new Idioma();
         idioma.setId(filmeInput.getIdioma());
         filme.setIdioma(idioma);
@@ -60,6 +62,21 @@ public class FilmeController {
 
         try {
             filme = filmeService.salvarFilme(filme);
+        } catch (Exception e) {
+            System.out.println("Erro - " + e.getMessage());
+        }
+
+        return ResponseEntity.ok(filme);
+    }
+
+    @PostMapping(value = "/atualizar/{filmeid}/nome")
+    public ResponseEntity<Filme> atualizarNomeFilme(@PathVariable Integer filmeid, @RequestParam String titulo)
+            throws SQLException {
+
+        Filme filme = new Filme();
+
+        try {
+            filme = filmeService.atualizarNomeFilme(filmeid, titulo);
         } catch (Exception e) {
             System.out.println("Erro - " + e.getMessage());
         }
