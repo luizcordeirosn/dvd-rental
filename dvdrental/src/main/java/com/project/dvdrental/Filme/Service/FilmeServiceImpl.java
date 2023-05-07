@@ -47,4 +47,10 @@ public class FilmeServiceImpl implements FilmeService {
         return filmeRepo.atualizarCategoriaFilme(filme, categoria);
     }
 
+    @Override
+    public Boolean deletarFilme(Filme filme) {
+        
+        return filmeRepo.deletarFilme(filme);
+    }
+
 }

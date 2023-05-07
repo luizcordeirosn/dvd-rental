@@ -30,6 +30,7 @@ public class FilmeRepositoryImpl implements FilmeRepository {
             + " values (nextval('film_film_id_seq'),?,?,?,?,?,?,?,?,?::text[]) ";
     private static String UPDATE_NAME = "update film set title = ? where film_id = ?";
     private static String UPDATE_CATEGORY = "update film_category set category_id = ? where film_id = ?";
+    private static String DELETE = " delete from film where film_id = ? ";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -147,5 +148,19 @@ public class FilmeRepositoryImpl implements FilmeRepository {
 
         return obterPorIdFilme(filme.getFilmeId());
 
+    }
+
+    public Boolean deletarFilme(Filme filme) {
+
+        Boolean ret = false;
+        
+        Integer rows = jdbcTemplate.update(DELETE, new Object[] {filme.getFilmeId()});
+
+        if(rows > 0){
+            ret = true;
+        }
+
+        return ret;
+        
     }
 }

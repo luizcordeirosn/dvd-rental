@@ -14,4 +14,6 @@ public interface FilmeRepository {
     Filme atualizarNomeFilme(Filme filme, String nome);
 
     Filme atualizarCategoriaFilme(Filme filme, Integer categoria);
+
+    Boolean deletarFilme(Filme filme);
 }

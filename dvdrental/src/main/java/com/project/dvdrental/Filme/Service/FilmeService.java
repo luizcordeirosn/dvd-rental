@@ -14,5 +14,7 @@ public interface FilmeService {
     Filme atualizarNomeFilme(Integer filmeId, String nome);
 
     Filme atualizarCategoriaFilme(Integer filmeId, Integer categoria);
+
+    Boolean deletarFilme(Filme filme);
     
 }
