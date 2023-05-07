@@ -2,6 +2,9 @@ package com.project.dvdrental.Filme.Controller;
 
 import org.springframework.stereotype.Controller;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +38,19 @@ public class AtorController {
         }
 
         return ResponseEntity.ok(ator);
+    }
+
+    @GetMapping(value = "/obtertodos/filme/{filmeid}")
+    public ResponseEntity<List<Ator>> atoresPorFilme(@PathVariable Integer filmeid) {
+
+        List<Ator> lista = new ArrayList<Ator>();
+        try {
+            lista = atorService.obterTodosAtoresPorFilme(filmeid);
+        } catch (Exception e) {
+            System.out.println("Erro - " + e.getMessage());
+        }
+
+        return ResponseEntity.ok(lista);
     }
 
     @PostMapping(value = "/salvar")

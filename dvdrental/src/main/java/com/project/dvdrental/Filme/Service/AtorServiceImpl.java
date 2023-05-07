@@ -1,5 +1,7 @@
 package com.project.dvdrental.Filme.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.project.dvdrental.Filme.Model.Ator;
@@ -15,6 +17,12 @@ public class AtorServiceImpl implements AtorService {
     public Ator obterPorIdAtor(Integer id) {
         
         return atorRepo.obterPorIdAtor(id);
+    }
+
+    @Override
+    public List<Ator> obterTodosAtoresPorFilme(Integer filme) {
+        
+        return atorRepo.obterTodosAtoresPorFilme(filme);
     }
 
     @Override

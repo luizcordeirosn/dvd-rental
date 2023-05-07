@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +20,9 @@ import com.project.dvdrental.Filme.Model.Ator;
 public class AtorRepositoryImpl implements AtorRepository {
 
     private static String SELECT_ONE = " select * from actor where actor_id = ?";
+    private static String SELECT_ALL_FILM = " select * from actor a"
+            + " inner join film_actor fa on fa.actor_id = a.actor_id"
+            + " where fa.film_id = ?";
     private static String INSERT = " insert into actor (actor_id, first_name, last_name) "
             + " values (nextval('actor_actor_id_seq'),?,?) ";
 
@@ -45,6 +49,25 @@ public class AtorRepositoryImpl implements AtorRepository {
                 return ator;
             }
         });
+
+    }
+
+    public List<Ator> obterTodosAtoresPorFilme(Integer filme) {
+        
+        return jdbcTemplate.query(SELECT_ALL_FILM, new RowMapper<Ator>() {
+            @Override
+            public Ator mapRow(ResultSet rs, int rownumber) throws SQLException {
+
+                Ator ator = new Ator();
+
+                ator.setAtorId(rs.getInt("actor_id"));
+                ator.setPrimeiroNome(rs.getString("first_name"));
+                ator.setUltimoNome(rs.getString("last_name"));
+                ator.setUltimaAtualizacao(rs.getString("last_update"));
+
+                return ator;
+            }
+        }, filme);
 
     }
 
