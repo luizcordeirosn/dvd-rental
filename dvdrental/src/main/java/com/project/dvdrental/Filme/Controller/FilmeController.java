@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.project.dvdrental.Filme.Model.Filme;
 import com.project.dvdrental.Filme.Model.FilmeInput;
-import com.project.dvdrental.Filme.Model.Idioma;
 import com.project.dvdrental.Filme.Service.FilmeService;
 
 @RestController
@@ -64,11 +63,7 @@ public class FilmeController {
         filme.setTitulo(filmeInput.getTitulo());
         filme.setDescricao(filmeInput.getDescricao());
         filme.setAnoLancamento(filmeInput.getAnoLancamento());
-
-        Idioma idioma = new Idioma();
-        idioma.setId(filmeInput.getIdioma());
-        filme.setIdioma(idioma);
-
+        filme.setIdioma(filmeInput.getIdioma());
         filme.setTempoAluguel(filmeInput.getTempoAluguel());
         filme.setAvaliacaoAluguel(filmeInput.getAvaliacaoAluguel());
         filme.setComprimento(filmeInput.getComprimento());

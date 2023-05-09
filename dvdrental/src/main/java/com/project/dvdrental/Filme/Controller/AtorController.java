@@ -2,9 +2,9 @@ package com.project.dvdrental.Filme.Controller;
 
 import org.springframework.stereotype.Controller;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +61,9 @@ public class AtorController {
 
         ator.setPrimeiroNome(atorInput.getPrimeiroNome());
         ator.setUltimoNome(atorInput.getUltimoNome());
+
+        Timestamp ultimaAtualizacao = new Timestamp(System.currentTimeMillis());
+        ator.setUltimaAtualizacao(ultimaAtualizacao);
 
         try {
             ator = atorService.salvarAtor(ator);

@@ -1,19 +1,55 @@
 package com.project.dvdrental.Filme.Model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "film")
 public class Filme {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "film_id")
     private Integer filmeId;
+
+    @Column(name = "title")
     private String titulo;
+
+    @Column(name = "description")
     private String descricao;
+
+    @Column(name = "release_year")
     private Integer anoLancamento;
-    private Idioma idioma;
+
+    @Column(name = "language_id")
+    private Integer idioma;
+
+    @Column(name = "rental_duration")
     private Integer tempoAluguel;
+
+    @Column(name = "rental_rate")
     private Double avaliacaoAluguel;
+
+    @Column(name = "length")
     private Integer comprimento;
+
+    @Column(name = "replacement_cost")
     private Double custoSubstituicao;
+
+    @Column(name = "rating")
     private String avaliacao;
+
+    @Column(name = "last_update")
     private String ultimaAtualizacao;
+
+    @Column(name = "special_features")
     private String funcionalidadesEspeciais;
+
+    @Column(name = "fulltext")
     private String textoCompleto;
 
     public Integer getFilmeId() {
@@ -40,10 +76,10 @@ public class Filme {
     public void setAnoLancamento(Integer anoLancamento) {
         this.anoLancamento = anoLancamento;
     }
-    public Idioma getIdioma() {
+    public Integer getIdioma() {
         return idioma;
     }
-    public void setIdioma(Idioma idioma) {
+    public void setIdioma(Integer idioma) {
         this.idioma = idioma;
     }
     public Integer getTempoAluguel() {

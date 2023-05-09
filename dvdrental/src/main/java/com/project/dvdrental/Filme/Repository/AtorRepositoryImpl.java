@@ -44,7 +44,7 @@ public class AtorRepositoryImpl implements AtorRepository {
                 ator.setAtorId(rs.getInt("actor_id"));
                 ator.setPrimeiroNome(rs.getString("first_name"));
                 ator.setUltimoNome(rs.getString("last_name"));
-                ator.setUltimaAtualizacao(rs.getString("last_update"));
+                ator.setUltimaAtualizacao(rs.getTimestamp("last_update"));
 
                 return ator;
             }
@@ -63,7 +63,7 @@ public class AtorRepositoryImpl implements AtorRepository {
                 ator.setAtorId(rs.getInt("actor_id"));
                 ator.setPrimeiroNome(rs.getString("first_name"));
                 ator.setUltimoNome(rs.getString("last_name"));
-                ator.setUltimaAtualizacao(rs.getString("last_update"));
+                ator.setUltimaAtualizacao(rs.getTimestamp("last_update"));
 
                 return ator;
             }

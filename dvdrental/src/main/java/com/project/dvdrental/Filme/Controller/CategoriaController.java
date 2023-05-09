@@ -2,6 +2,8 @@ package com.project.dvdrental.Filme.Controller;
 
 import org.springframework.stereotype.Controller;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +46,9 @@ public class CategoriaController {
         Categoria categoria = new Categoria();
 
         categoria.setNome(categoriaInput.getNome());
+
+        Timestamp ultimaAtualizacao = new Timestamp(System.currentTimeMillis());
+        categoria.setUltimaAtualizacao(ultimaAtualizacao);
 
         try {
             categoria = categoriaService.salvarCategoria(categoria);

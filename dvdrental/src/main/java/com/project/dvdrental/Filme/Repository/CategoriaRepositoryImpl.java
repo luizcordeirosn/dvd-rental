@@ -39,7 +39,7 @@ public class CategoriaRepositoryImpl implements CategoriaRepository {
 
                 ator.setCategoriaId(rs.getInt("category_id"));
                 ator.setNome(rs.getString("name"));
-                ator.setUltimaAtualizacao(rs.getString("last_update"));
+                ator.setUltimaAtualizacao(rs.getTimestamp("last_update"));
 
                 return ator;
             }
