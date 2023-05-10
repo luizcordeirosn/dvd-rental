@@ -11,16 +11,16 @@ import com.project.dvdrental.Filme.Model.Filme;
 @Repository
 public interface FilmeJpaRepository extends JpaRepository<Filme, Integer> {
 
-    @Query(value = "select * from film f"
-            + " inner join film_category fc on fc.film_id = f.film_id"
-            + " where fc.category_id = :categoryid", nativeQuery = true)
-    List<Filme> getAllByCategory(@Param("categoryid") Integer categoriaId);
+    // @Query(value = "select * from film f"
+    //         + " inner join film_category fc on fc.film_id = f.film_id"
+    //         + " where fc.category_id = :categoryid", nativeQuery = true)
+    // List<Filme> getAllByCategory(@Param("categoryid") Integer categoriaId);
 
-    @Modifying
-    @Query(value = "update film set title = :title where film_id = :filmid", nativeQuery = true)
-    void updateFilmName(@Param("title") String titulo, @Param("filmid") Integer filmeId);
+    // @Modifying
+    // @Query(value = "update film set title = :title where film_id = :filmid", nativeQuery = true)
+    // void updateFilmName(@Param("title") String titulo, @Param("filmid") Integer filmeId);
 
-    @Modifying
-    @Query(value = "update film_category set category_id = :categoryid where film_id = :filmid", nativeQuery = true)
-    void updateFilmCategory(@Param("categoryid") Integer categoria, @Param("filmid") Integer filmeId);
+    // @Modifying
+    // @Query(value = "update film_category set category_id = :categoryid where film_id = :filmid", nativeQuery = true)
+    // void updateFilmCategory(@Param("categoryid") Integer categoria, @Param("filmid") Integer filmeId);
 }

@@ -15,6 +15,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import com.project.dvdrental.Filme.Model.Filme;
+import com.project.dvdrental.Filme.Model.Idioma;
 
 @Repository
 public class FilmeRepositoryImpl implements FilmeRepository {
@@ -33,6 +34,9 @@ public class FilmeRepositoryImpl implements FilmeRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private IdiomaRepository idiomaRepo;
+
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -49,7 +53,11 @@ public class FilmeRepositoryImpl implements FilmeRepository {
                 filme.setTitulo(rs.getString("title"));
                 filme.setDescricao(rs.getString("description"));
                 filme.setAnoLancamento(rs.getInt("release_year"));
-                filme.setIdioma(rs.getInt("language_id"));
+
+                Integer idiomaId = rs.getInt("language_id");
+                Idioma idioma = idiomaRepo.obterPorIdIdioma(idiomaId);
+                filme.setIdioma(idioma);
+
                 filme.setTempoAluguel(rs.getInt("rental_duration"));
                 filme.setAvaliacaoAluguel(rs.getDouble("rental_rate"));
                 filme.setComprimento(rs.getInt("length"));
@@ -77,7 +85,11 @@ public class FilmeRepositoryImpl implements FilmeRepository {
                 filme.setTitulo(rs.getString("title"));
                 filme.setDescricao(rs.getString("description"));
                 filme.setAnoLancamento(rs.getInt("release_year"));
-                filme.setIdioma(rs.getInt("language_id"));
+
+                Integer idiomaId = rs.getInt("language_id");
+                Idioma idioma = idiomaRepo.obterPorIdIdioma(idiomaId);
+                filme.setIdioma(idioma);
+
                 filme.setTempoAluguel(rs.getInt("rental_duration"));
                 filme.setAvaliacaoAluguel(rs.getDouble("rental_rate"));
                 filme.setComprimento(rs.getInt("length"));
@@ -105,7 +117,7 @@ public class FilmeRepositoryImpl implements FilmeRepository {
                 ps.setString(1, filme.getTitulo());
                 ps.setString(2, filme.getDescricao());
                 ps.setInt(3, filme.getAnoLancamento());
-                ps.setInt(4, filme.getIdioma());
+                ps.setInt(4, filme.getIdioma().getId());
                 ps.setInt(5, filme.getTempoAluguel());
                 ps.setDouble(6, filme.getAvaliacaoAluguel());
                 ps.setInt(7, filme.getComprimento());
