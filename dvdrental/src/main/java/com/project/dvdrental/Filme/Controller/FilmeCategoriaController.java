@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.project.dvdrental.Filme.Model.FilmeAtor;
-import com.project.dvdrental.Filme.Service.FilmeAtorService;
+import com.project.dvdrental.Filme.Model.FilmeCategoria;
+import com.project.dvdrental.Filme.Service.FilmeCategoriaService;
 
 @RestController
-@RequestMapping(value = "/filmeator")
+@RequestMapping(value = "/filmecategoria")
 @Transactional
 @Controller
-public class FilmeAtorController {
+public class FilmeCategoriaController {
 
     @Autowired
-    private FilmeAtorService filmeAtorService;
+    private FilmeCategoriaService filmeCategoriaService;
     
-    @GetMapping(value = "/obtertodos/filme/{filmeid}")
-    public ResponseEntity<List<FilmeAtor>> atoresPorFilme(@PathVariable Integer filmeid) {
+    @GetMapping(value = "/obtertodos/categoria/{categoriaid}")
+    public ResponseEntity<List<FilmeCategoria>> filmesPorCategoria(@PathVariable Integer categoriaid) {
 
-        List<FilmeAtor> lista = new ArrayList<FilmeAtor>();
+        List<FilmeCategoria> lista = new ArrayList<FilmeCategoria>();
         try {
-            lista = filmeAtorService.obterTodosAtoresPorFilme(filmeid);
+            lista = filmeCategoriaService.obterTodosFilmesPorCategoria(categoriaid);
         } catch (Exception e) {
             System.out.println("Erro - " + e.getMessage());
         }
