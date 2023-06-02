@@ -19,7 +19,7 @@ public class AtorServiceImpl implements AtorService {
     private SessionFactory sf;
 
     @Override
-    public Ator obterPorIdAtor(Integer id) {
+    public Ator obterPorIdAtor(Integer id) throws Exception {
 
         Optional<Ator> optionalAtor = atorJpaRepo.findById(id);
 
@@ -27,6 +27,8 @@ public class AtorServiceImpl implements AtorService {
 
         if (optionalAtor.isPresent()) {
             ator = optionalAtor.get();
+        }else{
+            throw new Exception("Usuário não encontrado");
         }
 
         return ator;
@@ -49,6 +51,12 @@ public class AtorServiceImpl implements AtorService {
     @Override
     public Ator salvarAtor(Ator ator) {
 
+        return atorJpaRepo.save(ator);
+    }
+
+    @Override
+    public Ator atualizarAtor(Ator ator) {
+        
         return atorJpaRepo.save(ator);
     }
 
