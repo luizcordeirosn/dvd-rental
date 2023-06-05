@@ -6,6 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.project.dvdrental.Filme.Dto.AtorDto;
 import com.project.dvdrental.Filme.Model.Ator;
 import com.project.dvdrental.Filme.Repository.AtorJpaRepository;
 
@@ -19,7 +21,7 @@ public class AtorServiceImpl implements AtorService {
     private SessionFactory sf;
 
     @Override
-    public Ator obterPorIdAtor(Integer id) throws Exception {
+    public Ator ator(Integer id) throws Exception {
 
         Optional<Ator> optionalAtor = atorJpaRepo.findById(id);
 
@@ -32,6 +34,22 @@ public class AtorServiceImpl implements AtorService {
         }
 
         return ator;
+    }
+
+    @Override
+    public AtorDto obterPorIdAtor(Integer id) throws Exception {
+
+        Optional<AtorDto> optionalDto = atorJpaRepo.findById(id).map(AtorDto::of);
+
+        AtorDto result = null;
+
+        if (optionalDto.isPresent()) {
+            result = optionalDto.get();
+        }else{
+            throw new Exception("Usuário não encontrado");
+        }
+
+        return result;
     }
 
     @Override
