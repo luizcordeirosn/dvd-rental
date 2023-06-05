@@ -7,6 +7,8 @@ public interface AtorService {
 
     Ator obterPorIdAtor(Integer id) throws Exception;
 
+    Ator obterPorNomeAtor(String primeiroNome, String ultimoNome) throws Exception;
+
     List<Ator> obterTodosAtoresPorFilme(Integer filme);
     
     Ator salvarAtor(Ator ator);

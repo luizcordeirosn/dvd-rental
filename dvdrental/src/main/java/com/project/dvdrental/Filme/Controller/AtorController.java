@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.project.dvdrental.Filme.Model.Ator;
 import com.project.dvdrental.Filme.Model.AtorInput;
@@ -35,6 +36,19 @@ public class AtorController {
         Ator ator = new Ator();
         try {
             ator = atorService.obterPorIdAtor(id);
+        } catch (Exception e) {
+            System.out.println("Erro - " + e.getMessage());
+        }
+
+        return ResponseEntity.ok(ator);
+    }
+
+    @GetMapping(value = "/nome")
+    public ResponseEntity<Ator> nomeAtor(@RequestParam String primeiroNome, @RequestParam String ultimoNome) {
+
+        Ator ator = new Ator();
+        try {
+            ator = atorService.obterPorNomeAtor(primeiroNome, ultimoNome);
         } catch (Exception e) {
             System.out.println("Erro - " + e.getMessage());
         }
@@ -88,7 +102,7 @@ public class AtorController {
             ator.setPrimeiroNome(atorInput.getPrimeiroNome());
             ator = atorService.atualizarAtor(ator);
         } catch (Exception e) {
-            
+
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro - " + e.getMessage());
         }
 

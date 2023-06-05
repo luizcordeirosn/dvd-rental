@@ -35,6 +35,22 @@ public class AtorServiceImpl implements AtorService {
     }
 
     @Override
+    public Ator obterPorNomeAtor(String primeiroNome, String ultimoNome) throws Exception {
+
+        Optional<Ator> optionalAtor = atorJpaRepo.findByPrimeiroNomeAndUltimoNome(primeiroNome, ultimoNome);
+
+        Ator ator = null;
+
+        if (optionalAtor.isPresent()) {
+            ator = optionalAtor.get();
+        }else{
+            throw new Exception("Usuário não encontrado");
+        }
+
+        return ator;
+    }
+
+    @Override
     public List<Ator> obterTodosAtoresPorFilme(Integer filme) {
 
         Session session = sf.openSession();

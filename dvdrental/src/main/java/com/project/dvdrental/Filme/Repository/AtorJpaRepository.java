@@ -1,6 +1,8 @@
 package com.project.dvdrental.Filme.Repository;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,4 +16,6 @@ public interface AtorJpaRepository extends JpaRepository<Ator, Integer> {
     //         + " inner join film_actor fa on fa.actor_id = a.actor_id"
     //         + " where fa.film_id = :filmid", nativeQuery = true)
     // List<Ator> getAllByFilm(@Param("filmid") Integer filmeId);
+
+    Optional<Ator> findByPrimeiroNomeAndUltimoNome(String primeiroNome, String ultimoNome);
 }
