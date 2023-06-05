@@ -69,6 +69,19 @@ public class AtorController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping(value = "/obtertodos/primeiro-nome")
+    public ResponseEntity<List<Ator>> atoresPorPrimeiroNome(@RequestParam String nome) {
+
+        List<Ator> lista = new ArrayList<Ator>();
+        try {
+            lista = atorService.obterTodosAtoresPorPrimeiroNome(nome);
+        } catch (Exception e) {
+            System.out.println("Erro - " + e.getMessage());
+        }
+
+        return ResponseEntity.ok(lista);
+    }
+
     @PostMapping(value = "/salvar")
     public ResponseEntity<Ator> salvarAtor(@RequestBody AtorInput atorInput)
             throws SQLException {

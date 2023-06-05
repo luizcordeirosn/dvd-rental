@@ -65,6 +65,14 @@ public class AtorServiceImpl implements AtorService {
     }
 
     @Override
+    public List<Ator> obterTodosAtoresPorPrimeiroNome(String nome) {
+
+        List<Ator> lista = atorJpaRepo.findAllByPrimeiroNome(nome);
+
+        return lista;
+    }
+
+    @Override
     public Ator salvarAtor(Ator ator) {
 
         return atorJpaRepo.save(ator);

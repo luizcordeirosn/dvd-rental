@@ -18,4 +18,6 @@ public interface AtorJpaRepository extends JpaRepository<Ator, Integer> {
     // List<Ator> getAllByFilm(@Param("filmid") Integer filmeId);
 
     Optional<Ator> findByPrimeiroNomeAndUltimoNome(String primeiroNome, String ultimoNome);
+
+    List<Ator> findAllByPrimeiroNome(String nome);
 }
