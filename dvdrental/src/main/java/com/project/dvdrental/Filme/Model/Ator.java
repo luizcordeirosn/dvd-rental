@@ -9,11 +9,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "actor")
 @DynamicInsert
 @DynamicUpdate
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Ator {
     
     @Id
@@ -29,29 +39,4 @@ public class Ator {
 
     @Column(name = "last_update", nullable = false)
     private Timestamp ultimaAtualizacao;
-    
-    public Integer getAtorId() {
-        return atorId;
-    }
-    public void setAtorId(Integer atorId) {
-        this.atorId = atorId;
-    }
-    public String getPrimeiroNome() {
-        return primeiroNome;
-    }
-    public void setPrimeiroNome(String primeiroNome) {
-        this.primeiroNome = primeiroNome;
-    }
-    public String getUltimoNome() {
-        return ultimoNome;
-    }
-    public void setUltimoNome(String ultimoNome) {
-        this.ultimoNome = ultimoNome;
-    }
-    public Timestamp getUltimaAtualizacao() {
-        return ultimaAtualizacao;
-    }
-    public void setUltimaAtualizacao(Timestamp ultimaAtualizacao) {
-        this.ultimaAtualizacao = ultimaAtualizacao;
-    }
 }

@@ -86,10 +86,10 @@ public class AtorController {
     public ResponseEntity<Ator> salvarAtor(@RequestBody AtorInput atorInput)
             throws SQLException {
 
-        Ator ator = new Ator();
-
-        ator.setPrimeiroNome(atorInput.getPrimeiroNome());
-        ator.setUltimoNome(atorInput.getUltimoNome());
+        Ator ator = Ator.builder()
+                    .primeiroNome(atorInput.getPrimeiroNome())
+                    .ultimoNome(atorInput.getUltimoNome())
+                    .build();
 
         // Timestamp ultimaAtualizacao = new Timestamp(System.currentTimeMillis());
         // ator.setUltimaAtualizacao(ultimaAtualizacao);
@@ -112,8 +112,12 @@ public class AtorController {
         try {
 
             ator = atorService.obterPorIdAtor(id);
-            ator.setPrimeiroNome(atorInput.getPrimeiroNome());
-            ator = atorService.atualizarAtor(ator);
+            Ator aux = Ator.builder()
+                    .atorId(ator.getAtorId())
+                    .primeiroNome(atorInput.getPrimeiroNome())
+                    .ultimoNome(ator.getUltimoNome())
+                    .build();
+            ator = atorService.atualizarAtor(aux);
         } catch (Exception e) {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro - " + e.getMessage());
