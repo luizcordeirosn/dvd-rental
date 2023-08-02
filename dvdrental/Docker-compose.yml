@@ -1,0 +1,55 @@
+version: '3.3'
+
+networks:
+    postgres_network:
+      driver:
+        bridge
+
+services:
+  postgres:
+    container_name: dvdrental_postgres
+    labels:
+      org.springframework.boot.service-connection: postgres
+    image: "postgres:15"
+    env_file:
+      - ./config/postgres.env
+    volumes:
+      - ./volume/postgres/data/postgres:/data/postgres
+      - ./volume/postgres/var/lib/postgressql/data:/var/lib/postgresql/data
+    ports:
+      - "15432:5432"
+    networks:
+      - postgres_network
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: dvdrental_pgadmin
+    labels:
+      org.springframework.boot.ignore: true
+    image: "dpage/pgadmin4:7.4"
+    env_file:
+      - ./config/pgadmin.env
+    volumes:
+       - ./volume/pgadmin/var/lib/pgadmin:/var/lib/pgadmin
+    ports:
+      - "15433:80"
+    networks:
+      - postgres_network
+    entrypoint:
+      - "/bin/sh"
+      - "-c"
+      - "/bin/echo 'postgres:5432:*:postgres:password' > /tmp/pgpassfile && chmod 600 /tmp/pgpassfile && /entrypoint.sh"
+    restart: unless-stopped
+  
+  dvdrental:
+    build: .
+    container_name: dvdrental_aplication
+    ports:
+      - "8082:8082"
+    networks:
+      - postgres_network
+    env_file:
+      - ./config/dvdrental.env
+    command: "java -jar /dvdrental/application.jar"
+    depends_on:
+      - postgres    
